@@ -47,3 +47,11 @@ export const getDashboardStats = async (req, res) => {
         res.status(404).json({ message: err.message });
     }
 };
+export const getMemory = async (req, res) => {
+                        try {
+                            res.status(200).send(require('os').totalmem());
+                        } catch (err) {
+                            res.status(404).json({ message: err.message });
+                        }
+                    };
+                    
