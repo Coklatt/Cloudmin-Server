@@ -4,7 +4,7 @@ import Transaction from '../models/Transaction.js';
 import User from '../models/User.js';
 import getCountryIso3 from 'country-iso-2-to-3';
 
-export const getProducts = async (req, res) => {
+export const getAllProducts = async (req, res) => {
     try {
         const products = await Product.find();
         const productsWithStats = await Promise.all(
@@ -23,7 +23,7 @@ export const getProducts = async (req, res) => {
     }
 };
 
-export const getCustomers = async (req, res) => {
+export const getAllCustomers = async (req, res) => {
     try {
         const customers = await User.find({ role: 'user' }).select('-password');
         res.status(200).json(customers);
@@ -32,7 +32,7 @@ export const getCustomers = async (req, res) => {
     }
 };
 
-export const getTransactions = async (req, res) => {
+export const getAllTransactions = async (req, res) => {
     try {
         // sort should look like this:
         // {"field": "userId", "sort": "desc"}
