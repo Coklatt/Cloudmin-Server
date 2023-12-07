@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import User from '../models/User.js';
 import Transaction from '../models/Transaction.js';
 
-export const getAdmins = async (req, res) => {
+export const getAdmins = async (_, res) => {
     try {
         const admins = await User.find({ role: 'admin' }).select('-password');
 
@@ -39,9 +39,9 @@ export const getUserPerformance = async (req, res) => {
             })
         );
 
-        const filteredSaleTransactions = saleTransactions.filter((transaction) => transaction !== null);
+        const filteredTransactions = saleTransactions.filter((transaction) => transaction !== null);
 
-        res.status(200).json({ user: userWithStats[0], sales: filteredSaleTransactions });
+        res.status(200).json({ user: userWithStats[0], sales: filteredTransactions });
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
